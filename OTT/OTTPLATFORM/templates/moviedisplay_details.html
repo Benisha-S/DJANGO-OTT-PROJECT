@@ -1,0 +1,196 @@
+{% block body %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+    /* General body styles */
+    body {
+        background-color: #121212;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Container styles */
+    .container {
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{{ movie_details.image.url }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        max-width: 1200px; /* Adjusted maximum width */
+        margin: 50px auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Picture enhancement */
+    .container:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: inherit;
+        filter: blur(10px) brightness(0.7);
+        z-index: -1;
+    }
+
+    /* Title styles */
+    h1 {
+        font-size: 60px;
+        margin-top: 0;
+        font-weight: 700;
+        font-family: 'Playfair Display', serif;
+        color: #ff6347;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        animation: fadeIn 2s ease;
+        background: linear-gradient(90deg, #ff6347, #ff4500);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Description styles */
+    .description {
+        font-size: 26px;
+        line-height: 1.6;
+        margin: 20px 0;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 3s ease;
+    }
+
+    /* Meta info styles */
+    .meta-info {
+        font-size: 20px;
+        margin-top: 20px;
+        font-weight: 400;
+        text-align: left;
+        display: inline-block;
+        max-width: 100%;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 4s ease;
+    }
+
+    .meta-info p {
+        margin: 10px 0;
+    }
+
+    .meta-info u {
+        text-decoration: underline wavy;
+        text-decoration-color: #ff6347;
+    }
+
+    /* Button styles */
+    .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: #ff6347;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        font-family: 'Montserrat', sans-serif;
+        animation: fadeIn 5s ease;
+    }
+
+    .btn:hover {
+        background-color: #e5533b;
+        transform: scale(1.05);
+    }
+
+    .btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(255, 99, 71, 0.5);
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .container {
+            padding: 30px;
+        }
+        h1 {
+            font-size: 42px;
+        }
+        .description {
+            font-size: 20px;
+        }
+        .meta-info {
+            font-size: 16px;
+        }
+        .btn {
+            font-size: 18px;
+            padding: 12px 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 32px;
+        }
+        .description {
+            font-size: 18px;
+        }
+        .meta-info {
+            font-size: 14px;
+        }
+        .btn {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+
+    /* Animation styles */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<div class="container">
+    {% if movie_details.is_disabled %}
+    <h1>Movie Unavailable</h1>
+    <div class="description">
+        <p>Sorry, this movie is temporarily unavailable. Please check back later.</p>
+    </div>
+    {% else %}
+    <h1>{{ movie_details.title }}</h1>
+    <div class="description">
+        <p>{{ movie_details.description }}</p>
+    </div>
+    <div class="meta-info">
+        <p><u>{{ movie_details.genres }}</u> | Director: {{ movie_details.director }}</p>
+        <p>Main Actor: {{ movie_details.main_actor }}</p>
+        <p>Duration: {{ movie_details.duration }} minutes</p>
+        <p>Posted by {{ movie_details.author }} on {{ movie_details.published_datetime }}</p>
+    </div>
+    <!-- Button to display the video -->
+    <button class="btn" onclick="handleVideoClick()">Watch Video</button>
+    {% endif %}
+</div>
+
+<script>
+    function handleVideoClick() {
+        {% if not movie_details.is_disabled %}
+            window.open('{{ movie_details.video.url }}', '_blank');
+        {% else %}
+            alert("This movie is temporarily disabled.");
+        {% endif %}
+    }
+</script>
+{% endblock %}

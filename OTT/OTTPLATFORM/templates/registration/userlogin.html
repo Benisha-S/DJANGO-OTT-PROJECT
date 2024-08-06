@@ -1,0 +1,105 @@
+{% block style %}
+{% load static %}
+<style>
+    body {
+         background-image: url('{% static "images/backg.jpg" %}');
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        width: 300px;
+        text-align: center;
+        color: #333;
+    }
+
+    .login-container h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #444;
+    }
+
+    .login-container form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #555;
+        transition: border-color 0.3s;
+    }
+
+    .login-container input[type="text"]::placeholder,
+    .login-container input[type="password"]::placeholder {
+        color: #888;
+    }
+
+    .login-container input[type="text"]:focus,
+    .login-container input[type="password"]:focus {
+        outline: none;
+        border-color: #3AAFA9;
+    }
+
+    .login-container button {
+        padding: 12px;
+        background-color: #3AAFA9;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .login-container button:hover {
+        background-color: #2A7A7B;
+    }
+
+    .login-container .signup-link {
+        margin-top: 20px;
+    }
+
+    .login-container .signup-link a {
+        color: #3AAFA9;
+        text-decoration: none;
+    }
+
+    .login-container .signup-link a:hover {
+        text-decoration: underline;
+    }
+
+    a {
+        font-size: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" action="{% url 'userlogin' %}">
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <div class="signup-link">
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .payment-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            text-align: center;
+        }
+        .payment-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            color: #555;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3AAFA9;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #218c87;
+        }
+    </style>
+</head>
+<body>
+<div class="container payment-container">
+    <h2>Payment Details for {{ plan }}</h2>
+    <form id="payment-form" action="{% url 'payment_success' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" name="card_number" required>
+        </div>
+        <div class="form-group">
+            <label for="expiryDate">Expiry Date</label>
+            <input type="text" class="form-control" id="expiryDate" name="expiry_date" placeholder="MM/YY" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" required>
+        </div>
+        <button type="submit" class="btn-primary">Submit Payment</button>
+    </form>
+</div>
+
+</body>
+</html>

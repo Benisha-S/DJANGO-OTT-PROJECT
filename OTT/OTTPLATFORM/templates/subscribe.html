@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        #subscription-form {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .plan {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .plan-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #007bff;
+            font-weight: 700;
+        }
+        .plan-price {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: 500;
+        }
+        .plan-details {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .plan a {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .plan-base a {
+            background-color: #6c757d;
+        }
+        .plan-base a:hover {
+            background-color: #5a6268;
+        }
+        .plan-standard a {
+            background-color: #28a745;
+        }
+        .plan-standard a:hover {
+            background-color: #218838;
+        }
+        .plan-premium a {
+            background-color: #ffc107;
+        }
+        .plan-premium a:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Select Your Subscription Plan</h1>
+        <div>
+            <div class="plan plan-base">
+                <div class="plan-title">Base Plan</div>
+                <div class="plan-price">₹300</div>
+                <div class="plan-details">Basic access to features with limited content.</div>
+                <a href="{% url 'payment' %}" >
+               Choose Base Plan</a>
+            </div>
+            <div class="plan plan-standard">
+                <div class="plan-title">Standard Plan</div>
+                <div class="plan-price">₹750</div>
+                <div class="plan-details">Access to standard features and exclusive content.</div>
+               <a href="{% url 'payment' %}" >Choose Standard Plan</a>
+            </div>
+            <div class="plan plan-premium">
+                <div class="plan-title">Premium Plan</div>
+                <div class="plan-price">₹1500</div>
+                <div class="plan-details">All features, premium content, and priority support.</div>
+                <a href="{% url 'payment' %}" >Choose Premium Plan</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Display</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> <!-- Custom Font -->
+    <style>
+        /* Custom styles for the topbar */
+        .topbar {
+            background-color: #1c1c1c; /* Darker background color */
+            color: #ffffff; /* Light text color */
+            padding: 15px 30px; /* Add padding for spacing */
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Center items vertically */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Add a deeper shadow for more depth */
+            font-family: 'Roboto', sans-serif; /* Custom font */
+        }
+        .topbar .logo {
+            font-size: 26px; /* Font size for the logo */
+            font-weight: bold; /* Bold font weight */
+            text-transform: uppercase; /* Uppercase text */
+            letter-spacing: 2px; /* Add letter spacing for clarity */
+            color: #ffcc00; /* Gold color for the logo */
+            transition: color 0.3s; /* Smooth transition for color change */
+        }
+        .topbar .logo:hover {
+            color: #ffffff; /* Change logo color on hover */
+        }
+        .topbar .menu {
+            list-style-type: none; /* Remove default list styling */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex;
+            align-items: center; /* Center items vertically */
+        }
+        .topbar .menu li {
+            margin-left: 20px; /* Add spacing between menu items */
+            position: relative; /* Ensure submenu is positioned correctly */
+        }
+        .topbar .menu li a {
+            color: #ffffff; /* Light text color */
+            text-decoration: none; /* Remove default underline */
+            transition: color 0.3s; /* Add transition for smoother color change */
+            font-size: 16px; /* Adjust font size */
+            font-weight: 500; /* Medium font weight */
+            text-transform: uppercase; /* Uppercase text */
+        }
+        .topbar .menu li a:hover {
+            color: #ffcc00; /* Change text color on hover */
+        }
+        .topbar .menu li:last-child {
+            margin-right: 20px; /* Add spacing to the last menu item */
+        }
+        /* Submenu styles */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #292929; /* Dark background color */
+            border-radius: 4px;
+            padding: 10px 0;
+            z-index: 1000; /* Ensure the submenu is above other elements */
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add a deeper shadow */
+        }
+        .submenu a {
+            display: block;
+            color: #ffffff; /* Light text color */
+            text-decoration: none; /* Remove default underline */
+            padding: 10px 20px;
+            font-size: 14px; /* Adjust font size */
+            text-transform: uppercase; /* Uppercase text */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and color */
+        }
+        .submenu a:hover {
+            background-color: #3AAFA9; /* Change background color on hover */
+            color: #1c1c1c; /* Change text color on hover */
+        }
+        .menu-item:hover .submenu {
+            display: block; /* Show submenu on hover */
+        }
+        .topbar form {
+            margin: 0; /* Remove default margin */
+        }
+        .topbar .input-group {
+            width: 300px; /* Adjust search bar width */
+            transition: width 0.3s; /* Smooth transition for width change */
+        }
+        .topbar .input-group:hover {
+            width: 350px; /* Increase width on hover */
+        }
+        .topbar .form-control {
+            border: none; /* Remove default border */
+            border-radius: 20px 0 0 20px; /* Rounded corners */
+        }
+        .topbar .btn-primary {
+            background-color: #ffcc00; /* Custom button color */
+            border: none; /* Remove default border */
+            border-radius: 0 20px 20px 0; /* Rounded corners */
+            color: #1c1c1c; /* Dark text color */
+            font-weight: bold; /* Bold text */
+            transition: background-color 0.3s, color 0.3s; /* Smooth transition for background and color */
+        }
+        .topbar .btn-primary:hover {
+            background-color: #ffffff; /* Change background color on hover */
+            color: #ffcc00; /* Change text color on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="logo">Disney</div>
+        <ul class="menu">
+            <li class="menu-item">
+                <a href="#" class="dropdown-toggle">Categories</a>
+                <div class="submenu">
+                    <a href="{% url 'all_movies' %}" class="dropdown-item">All</a>
+                    <a href="{% url 'anime_movies' %}" class="dropdown-item">Anime</a>
+                    <a href="{% url 'adventure_movies' %}" class="dropdown-item">Adventure</a>
+                </div>
+            </li>
+            <li class="menu-item">
+                <a href="{% url 'userlogin' %}">Logout</a>
+            </li>
+            <li>
+                <form method="GET" action="{% url 'moviedisplay' %}" class="form-inline">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search by title, director, genres" value="{{ request.GET.q }}">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Your existing HTML content here -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

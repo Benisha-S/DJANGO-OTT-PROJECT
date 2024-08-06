@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adventure Movies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(45deg, #333333, #666666); /* Background gradient */
+            color: #ffffff; /* Light text color */
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 900px; /* Adjust container width */
+        }
+        .heading {
+            font-family: 'Roboto', sans-serif; /* Use Google Font Roboto */
+            font-size: 36px; /* Adjust font size */
+            font-weight: bold; /* Bold font weight */
+            text-align: center; /* Center align text */
+            margin-bottom: 30px; /* Add margin */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+        }
+        .card {
+            border: none; /* Remove border */
+            border-radius: 10px; /* Add border radius */
+            overflow: hidden; /* Hide overflow */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+            transition: transform 0.3s ease; /* Add transition */
+            background-color: #444444; /* Dark background color */
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Add hover effect */
+        }
+        .card-img-top {
+            border-top-left-radius: 10px; /* Rounded corners for top-left */
+            border-top-right-radius: 10px; /* Rounded corners for top-right */
+            height: 250px; /* Adjust image height */
+            object-fit: cover; /* Cover image */
+        }
+        .card-body {
+            padding: 20px; /* Add padding */
+        }
+        .card-title {
+            font-size: 22px; /* Adjust title font size */
+            margin-bottom: 10px; /* Add margin */
+        }
+        .card-text {
+            font-size: 16px; /* Adjust text font size */
+            margin-bottom: 20px; /* Add margin */
+        }
+        .btn-primary {
+            background-color: #ff6f00; /* Orange button color */
+            border: none; /* Remove border */
+            transition: background-color 0.3s; /* Add transition */
+        }
+        .btn-primary:hover {
+            background-color: #ff9800; /* Darker orange on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading mb-4">Adventure Movies</h1>
+        <div class="row">
+            <!-- Loop through each adventure movie and display it in a card -->
+            {% for movie in movies %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ movie.image.url }}" class="card-img-top" alt="{{ movie.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.description }}</p>
+                        <!-- Link to moviedisplay_details of the particular movie -->
+                        <a href="{% url 'moviedisplay_details' movie.id %}" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% extends 'adminbase.html' %}
+
+{% block title %}USER LOGIN{% endblock %}
+
+{% block style %}
+<style>
+  body {
+    background-color: #f2f2f2;
+
+  }
+
+  .container {
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  }
+
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .btn-success {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  .nav-link-custom {
+    color: #007bff;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nav-link-custom:hover {
+    background-color: #e2e6ea;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+    <h3>Please login</h3>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}

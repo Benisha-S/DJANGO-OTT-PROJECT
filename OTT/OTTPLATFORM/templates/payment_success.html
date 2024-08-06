@@ -1,0 +1,52 @@
+{% block title %}Payment Success{% endblock %}
+{% block style %}
+    {% load static %}
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .login-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h2>Payment Successful</h2>
+    <p>Your payment has been successfully processed. Thank you for your subscription!</p>
+    <a href="{% url 'userlogin' %}" class="login-button">Go to Login Page</a>
+</div>
+{% endblock %}
